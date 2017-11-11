@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.umich.andrewbull.piedpiper.DishViewActivity">
+
+    <TextView
+        android:id="@+id/textViewDishName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dish Name"
+        android:textSize="24sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.123"
+        app:layout_constraintHorizontal_bias="0.498" />
+
+    <TextView
+        android:id="@+id/textViewRestuarantName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restaurant Name"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDishName"
+        app:layout_constraintVertical_bias="0.02" />
+
+    <TextView
+        android:id="@+id/textViewAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        android:textSize="18sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRestuarantName"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <TextView
+        android:id="@+id/textViewDishRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x.x/5.0"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAddress"
+        app:layout_constraintVertical_bias="0.127"
+        app:layout_constraintLeft_toRightOf="@+id/imageViewDishImage" />
+
+    <Button
+        android:id="@+id/buttonAddReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Review"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAddress"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintVertical_bias="0.342" />
+
+    <TextView
+        android:id="@+id/textViewReviewsLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reviews"
+        android:textSize="20sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddReview"
+        app:layout_constraintVertical_bias="0.098"
+        app:layout_constraintHorizontal_bias="0.051" />
+
+    <TextView
+        android:id="@+id/textViewReviewOne"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:text="Review one will be written here and will continue on the next line if it overflows."
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReviewsLabel"
+        app:layout_constraintVertical_bias="0.129" />
+
+    <TextView
+        android:id="@+id/textViewReviewTwo"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:text="Review two will be written here and will continue on the next line if it overflows."
+        app:layout_constraintBottom_toTopOf="@+id/textViewReviewThree"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReviewOne"
+        android:layout_marginTop="21dp" />
+
+    <TextView
+        android:id="@+id/textViewReviewThree"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:text="Review three will be written here and will continue on the next line if it overflows."
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.372"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReviewTwo"
+        android:layout_marginBottom="45dp" />
+
+    <ImageView
+        android:id="@+id/imageViewDishImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/gallery_thumb"
+        app:layout_constraintRight_toLeftOf="@+id/textViewDishRating"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddReview"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRestuarantName"
+        app:layout_constraintVertical_bias="0.639" />
+
+</android.support.constraint.ConstraintLayout>

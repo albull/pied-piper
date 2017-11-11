@@ -16,7 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".firstPage"></activity>
+        <activity android:name=".DishViewActivity" />
+        <activity android:name=".RestaurantViewActivity"></activity>
     </application>
 
 </manifest>
