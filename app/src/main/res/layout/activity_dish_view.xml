@@ -85,7 +85,7 @@
     <TextView
         android:id="@+id/textViewReviewOne"
         android:layout_width="368dp"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:text="Review one will be written here and will continue on the next line if it overflows."
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,10 +98,9 @@
     <TextView
         android:id="@+id/textViewReviewTwo"
         android:layout_width="368dp"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:text="Review two will be written here and will continue on the next line if it overflows."
         app:layout_constraintBottom_toTopOf="@+id/textViewReviewThree"
-        app:layout_constraintHorizontal_bias="0.372"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewReviewOne"
@@ -110,7 +109,7 @@
     <TextView
         android:id="@+id/textViewReviewThree"
         android:layout_width="368dp"
-        android:layout_height="wrap_content"
+        android:layout_height="44dp"
         android:text="Review three will be written here and will continue on the next line if it overflows."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.372"
