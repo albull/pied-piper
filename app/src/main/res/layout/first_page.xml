@@ -9,101 +9,101 @@
     tools:layout_editor_absoluteX="0dp">
 
     <ImageButton
-        android:id="@+id/imageButtonDishPic"
-        android:layout_width="86dp"
+        android:id="@+id/imageButtonDish1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteY="16dp"
-        tools:layout_editor_absoluteX="8dp" />
+        app:layout_constraintRight_toLeftOf="@+id/imageButtonDish2"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="14dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="4dp" />
 
     <ImageButton
-        android:id="@+id/imageButton19"
+        android:id="@+id/imageButtonDish2"
         android:layout_width="86dp"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteY="16dp"
-        tools:layout_editor_absoluteX="290dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageButtonDish1"
+        app:layout_constraintTop_toTopOf="@+id/imageButtonDish1"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="102dp"
+        android:layout_marginEnd="92dp"
+        app:layout_constraintRight_toRightOf="@+id/imageButtonDish3"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="102dp"
+        android:layout_marginRight="92dp" />
 
     <ImageButton
-        android:id="@+id/imageButton18"
+        android:id="@+id/imageButtonDish3"
         android:layout_width="86dp"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteY="16dp"
-        tools:layout_editor_absoluteX="196dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageButtonDish2"
+        app:layout_constraintTop_toTopOf="@+id/imageButtonDish2"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="104dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="104dp" />
 
     <ImageButton
-        android:id="@+id/imageButton17"
-        android:layout_width="86dp"
+        android:id="@+id/imageButtonDish4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteY="16dp"
-        tools:layout_editor_absoluteX="102dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageButtonDish3"
+        app:layout_constraintTop_toTopOf="@+id/imageButtonDish3"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toRightOf="@+id/imageButtonDish3"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="12dp" />
 
-    <android.support.constraint.Guideline
+    <TextView
+        android:id="@+id/textViewDish1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/guideline"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.0"
-        tools:layout_editor_absoluteY="0dp"
-        tools:layout_editor_absoluteX="0dp" />
+        android:text="TextView"
+        app:layout_constraintLeft_toLeftOf="@+id/imageButtonDish1"
+        app:layout_constraintTop_toTopOf="@+id/textViewDish2"
+        app:layout_constraintRight_toRightOf="@+id/imageButtonDish1" />
 
     <TextView
-        android:id="@+id/textViewDishName"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:id="@+id/textViewDish2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="TextView"
-        tools:layout_editor_absoluteY="284dp"
-        tools:layout_editor_absoluteX="305dp" />
+        app:layout_constraintTop_toTopOf="@+id/textViewDish3"
+        app:layout_constraintRight_toRightOf="@+id/imageButtonDish2"
+        app:layout_constraintLeft_toLeftOf="@+id/imageButtonDish2" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="86dp"
-        android:layout_height="33dp"
+        android:id="@+id/textViewDish3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_marginStart="5dp"
-        app:layout_constraintLeft_toRightOf="@+id/textView2"
-        android:layout_marginLeft="114dp"
-        app:layout_constraintTop_toTopOf="@+id/textView2"
-        android:layout_marginTop="-85dp" />
+        app:layout_constraintTop_toTopOf="@+id/textViewDish4"
+        app:layout_constraintRight_toRightOf="@+id/imageButtonDish3"
+        app:layout_constraintLeft_toLeftOf="@+id/imageButtonDish3" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="86dp"
-        android:layout_height="33dp"
+        android:id="@+id/textViewDish4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_marginStart="5dp"
-        app:layout_constraintLeft_toRightOf="@+id/textView6"
-        android:layout_marginLeft="5dp"
-        app:layout_constraintTop_toTopOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="86dp"
-        android:layout_height="33dp"
-        android:text="TextView"
-        android:layout_marginStart="5dp"
-        app:layout_constraintLeft_toRightOf="@+id/textView"
-        android:layout_marginLeft="111dp"
-        app:layout_constraintTop_toTopOf="@+id/textView"
-        android:layout_marginTop="-85dp" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="86dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="13dp"
-        android:text="TextView"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonDishPic"
-        tools:layout_editor_absoluteX="8dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="TextView"
-        tools:layout_editor_absoluteY="284dp"
-        tools:layout_editor_absoluteX="99dp" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonDish4"
+        app:layout_constraintRight_toRightOf="@+id/imageButtonDish4"
+        app:layout_constraintLeft_toLeftOf="@+id/imageButtonDish4" />
 
 </android.support.constraint.ConstraintLayout>
