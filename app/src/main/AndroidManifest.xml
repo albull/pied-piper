@@ -16,12 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddReviewActivity"></activity>
-        <activity android:name=".RestaurantViewActivity"></activity>
-        <activity android:name=".DishViewActivity"></activity>
-        <activity android:name=".Account"></activity>
-        <activity android:name=".LoginActivity"></activity>
-
+        <activity android:name=".AddReviewActivity" />
+        <activity android:name=".RestaurantViewActivity" />
+        <activity android:name=".DishViewActivity" />
+        <activity android:name=".Account" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".SearchResultsViewActivity" />
+        <activity android:name=".SeeMoreActivity" />
+        <activity android:name=".SpecificReviewActivity"></activity>
     </application>
 
 </manifest>

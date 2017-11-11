@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="edu.umich.andrewbull.piedpiper.SpecificReviewActivity">
+
+    <TextView
+        android:id="@+id/textViewRatingName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rater's Name"
+        android:textSize="18sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintVertical_bias="0.224" />
+
+    <TextView
+        android:id="@+id/textViewDishName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dish Name"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@+id/textViewRatingName"
+        app:layout_constraintBottom_toTopOf="@+id/textViewRestaurantName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRatingName"
+        android:layout_marginLeft="0dp" />
+
+    <TextView
+        android:id="@+id/textViewRestaurantName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Restaurant Name"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@+id/textViewDishName"
+        app:layout_constraintBottom_toTopOf="@+id/imageViewPictureOne"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDishName"
+        android:layout_marginLeft="0dp" />
+
+    <ImageView
+        android:id="@+id/imageViewPictureOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/gallery_thumb"
+        app:layout_constraintRight_toLeftOf="@+id/imageViewPictureTwo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHorizontal_bias="0.345"
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantName" />
+
+    <ImageView
+        android:id="@+id/imageViewPictureTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/gallery_thumb"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/imageViewPictureOne"
+        app:layout_constraintBottom_toTopOf="@+id/textView15"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRating"
+        app:layout_constraintVertical_bias="0.828" />
+
+    <TextView
+        android:id="@+id/textViewRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="x.x/5.0"
+        android:textSize="20sp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textViewRestaurantName"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintVertical_bias="0.625" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:text="The complete rating will be in this box and more details will come later."
+        app:layout_constraintLeft_toLeftOf="@+id/textViewRestaurantName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="75dp"
+        android:layout_marginLeft="4dp" />
+</android.support.constraint.ConstraintLayout>
