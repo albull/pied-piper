@@ -23,7 +23,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".SearchResultsViewActivity" />
         <activity android:name=".SeeMoreActivity" />
-        <activity android:name=".SpecificReviewActivity"></activity>
+        <activity android:name=".SpecificReviewActivity" />
+        <activity android:name=".CreateAccountActivity"></activity>
     </application>
 
 </manifest>
