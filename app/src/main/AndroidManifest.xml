@@ -20,11 +20,11 @@
         <activity android:name=".RestaurantViewActivity" />
         <activity android:name=".DishViewActivity" />
         <activity android:name=".Account" />
-        <activity android:name=".LoginActivity" />
         <activity android:name=".SearchResultsViewActivity" />
         <activity android:name=".SeeMoreActivity" />
         <activity android:name=".SpecificReviewActivity" />
-        <activity android:name=".CreateAccountActivity"></activity>
+        <activity android:name=".CreateAccountActivity" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>
