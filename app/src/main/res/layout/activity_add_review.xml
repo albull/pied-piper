@@ -7,7 +7,7 @@
     tools:context="edu.umich.andrewbull.piedpiper.AddReviewActivity">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewDish1"
         android:layout_width="78dp"
         android:layout_height="42dp"
         android:text="Rating"
@@ -48,7 +48,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Dish"
-        app:layout_constraintRight_toLeftOf="@+id/textView3"
+        app:layout_constraintRight_toLeftOf="@+id/textViewDish1"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/dishReviewEditText"
         app:layout_constraintTop_toBottomOf="@+id/restaurantReviewEditText" />
@@ -84,7 +84,7 @@
         app:layout_constraintBottom_toTopOf="@+id/dishReviewEditText"
         app:layout_constraintTop_toBottomOf="@+id/restaurantReviewEditText"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/textView3"
+        app:layout_constraintLeft_toRightOf="@+id/textViewDish1"
         app:layout_constraintVertical_bias="0.471" />
 
     <TextView

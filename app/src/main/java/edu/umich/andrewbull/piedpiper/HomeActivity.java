@@ -1,6 +1,7 @@
 package edu.umich.andrewbull.piedpiper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +37,10 @@ public class HomeActivity extends Activity implements Button.OnClickListener {
 
     @Override
     public void onClick(View view) {
-
+        if (view == imageButtonDish1 || view == imageButtonDish2 || view == imageButtonDish3 || view == imageButtonDish4) {
+            Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
+            this.startActivity(searchResults);
+        }
     }
 
 }
