@@ -1,6 +1,7 @@
 package edu.umich.andrewbull.piedpiper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
@@ -93,6 +94,8 @@ public class CreateAccountActivity extends Activity implements View.OnClickListe
     public void onClick(View view) {
         if(view == buttonCreateAccount) {
             createAccount(editTextUsername.getText().toString(),editTextPassword.getText().toString());
+            Intent logIn = new Intent(this, LoginActivity.class);
+            this.startActivity(logIn);
         }
     }
 }
