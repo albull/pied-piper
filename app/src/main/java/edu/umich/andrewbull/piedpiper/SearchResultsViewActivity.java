@@ -3,6 +3,9 @@ package edu.umich.andrewbull.piedpiper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -136,4 +139,32 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
             }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater mainMenuInflater = getMenuInflater();
+        mainMenuInflater.inflate(R.menu.mainmenu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId() == R.id.menuItemHome) {
+            Intent goHome = new Intent(this, HomeActivity.class);
+            this.startActivity(goHome);
+        } else if(item.getItemId() == R.id.menuItemMyAccount) {
+            Intent myAccount = new Intent(this, Account.class);
+            this.startActivity(myAccount);
+        }else if(item.getItemId() == R.id.menuItemLogInOut) {
+            Intent logInOut = new Intent(this, LoginActivity.class);
+            this.startActivity(logInOut);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }
