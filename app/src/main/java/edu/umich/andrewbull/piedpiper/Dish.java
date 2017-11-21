@@ -1,6 +1,6 @@
-import android.graphics.Picture;
+package edu.umich.andrewbull.piedpiper;
 
-import edu.umich.andrewbull.piedpiper.Review;
+import android.graphics.Picture;
 
 /**
  * Created by andrewbull on 11/9/17.

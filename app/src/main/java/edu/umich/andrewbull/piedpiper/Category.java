@@ -1,3 +1,7 @@
+package edu.umich.andrewbull.piedpiper;
+
+import edu.umich.andrewbull.piedpiper.Dish;
+
 /**
  * Created by andrewbull on 11/9/17.
  */

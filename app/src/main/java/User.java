@@ -1,3 +1,4 @@
+import edu.umich.andrewbull.piedpiper.Dish;
 import edu.umich.andrewbull.piedpiper.Review;
 
 /**

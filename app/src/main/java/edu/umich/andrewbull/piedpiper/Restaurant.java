@@ -1,7 +1,11 @@
+package edu.umich.andrewbull.piedpiper;
+
 import android.graphics.Picture;
 
 import java.net.URI;
 
+import edu.umich.andrewbull.piedpiper.Dish;
+import edu.umich.andrewbull.piedpiper.Hours;
 import edu.umich.andrewbull.piedpiper.Review;
 
 /**

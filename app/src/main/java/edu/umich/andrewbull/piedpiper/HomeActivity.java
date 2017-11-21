@@ -55,7 +55,11 @@ public class HomeActivity extends Activity implements Button.OnClickListener {
     public void onClick(View view) {
         if (view == imageButtonDish1 || view == imageButtonDish2 || view == imageButtonDish3 || view == imageButtonDish4) {
             Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
+            Bundle b = new Bundle();
+            b.putString("categoryId", "pizza");
+            searchResults.putExtra("categoryId", "pizza");
             this.startActivity(searchResults);
+
         }
     }
 
