@@ -13,6 +13,7 @@ public class HomeActivity extends Activity implements Button.OnClickListener {
 
     private ImageButton imageButtonDish1, imageButtonDish2, imageButtonDish3, imageButtonDish4;
     private TextView textViewDish1, textViewDish2, textViewDish3, textViewDish4;
+    private Button addReviewButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +29,22 @@ public class HomeActivity extends Activity implements Button.OnClickListener {
             textViewDish2 = (TextView) findViewById(R.id.textViewDish2);
             textViewDish3 = (TextView) findViewById(R.id.textViewDish3);
             textViewDish4 = (TextView) findViewById(R.id.textViewDish4);
+            addReviewButton = (Button) findViewById(R.id.addReviewButton);
 
+            addReviewButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent addReviewActivityIntent = new Intent(HomeActivity.this, AddReviewActivity.class);
+                    startActivity(addReviewActivityIntent);
+                }
+            });
+            textViewDish1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent searchResultsActivityIntent = new Intent(HomeActivity.this, SearchResultsViewActivity.class);
+                    startActivity(searchResultsActivityIntent);
+                }
+            });
             imageButtonDish1.setOnClickListener(this);
             imageButtonDish2.setOnClickListener(this);
             imageButtonDish3.setOnClickListener(this);

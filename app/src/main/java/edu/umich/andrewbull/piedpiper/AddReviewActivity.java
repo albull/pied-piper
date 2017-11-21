@@ -1,12 +1,16 @@
 package edu.umich.andrewbull.piedpiper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class AddReviewActivity extends AppCompatActivity implements View.OnClickListener {
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+public class AddReviewActivity extends AppCompatActivity {
 
     private Button submitReviewButton;
     private EditText restaurantNameEditText;
@@ -29,12 +33,27 @@ public class AddReviewActivity extends AppCompatActivity implements View.OnClick
         dishRatingEditText = (EditText) findViewById(R.id.dishRatingEditText);
         dishReviewEditText = (EditText) findViewById(R.id.dishReviewEditText);
 
-        submitReviewButton.setOnClickListener(this);
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        submitReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-    }
+                DatabaseReference myRef = database.getReference();
+                Review myReview = new Review();
+                myReview.setDish("pizza");
+                myReview.setRestaurant("pizza bobs");
+                String key = myRef.push().getKey();
+                myRef.child("reviews").child(key).child("dish").setValue(dishNameEditText.getText().toString());
+                myRef.child("reviews").child(key).child("restaurant").setValue(restaurantNameEditText.getText().toString());
+                myRef.child("reviews").child(key).child("dish_rating").setValue(dishRatingEditText.getText().toString());
+                myRef.child("reviews").child(key).child("restaurant_rating").setValue(restaurantRatingEditText.getText().toString());
+                myRef.child("reviews").child(key).child("dish_review").setValue(dishReviewEditText.getText().toString());
+                myRef.child("reviews").child(key).child("restaurant_review").setValue(restaurantReviewEditText.getText().toString());
 
-    @Override
-    public void onClick(View view) {
+                Intent returnToHomeIntent = new Intent(AddReviewActivity.this, HomeActivity.class);
+                startActivity(returnToHomeIntent);
 
+            }
+        });
     }
 }

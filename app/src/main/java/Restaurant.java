@@ -2,6 +2,8 @@ import android.graphics.Picture;
 
 import java.net.URI;
 
+import edu.umich.andrewbull.piedpiper.Review;
+
 /**
  * Created by andrewbull on 11/9/17.
  */

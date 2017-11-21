@@ -49,7 +49,7 @@
         tools:layout_constraintRight_creator="1"
         android:layout_marginEnd="104dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="124dp"
+        android:layout_marginRight="104dp"
         app:layout_constraintVertical_bias="1.0" />
 
     <ImageButton
@@ -72,10 +72,10 @@
         android:id="@+id/textViewDish1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Pizza"
         app:layout_constraintLeft_toLeftOf="@+id/imageButtonDish1"
-        app:layout_constraintTop_toTopOf="@+id/textViewDish2"
-        app:layout_constraintRight_toRightOf="@+id/imageButtonDish1" />
+        app:layout_constraintRight_toRightOf="@+id/imageButtonDish1"
+        app:layout_constraintTop_toTopOf="@+id/textViewDish2" />
 
     <TextView
         android:id="@+id/textViewDish2"
@@ -104,5 +104,15 @@
         app:layout_constraintTop_toBottomOf="@+id/imageButtonDish4"
         app:layout_constraintRight_toRightOf="@+id/imageButtonDish4"
         app:layout_constraintLeft_toLeftOf="@+id/imageButtonDish4" />
+
+    <Button
+        android:id="@+id/addReviewButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Review"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDish2" />
 
 </android.support.constraint.ConstraintLayout>

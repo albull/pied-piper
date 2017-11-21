@@ -7,6 +7,7 @@ public final class Category {
     private String categoryName;
     private Dish[] dishes;
     private String[] tags;
+    private Restaurant[] restaurants;
 
     public Category() {
         super();
