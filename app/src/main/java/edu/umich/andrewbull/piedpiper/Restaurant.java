@@ -4,10 +4,6 @@ import android.graphics.Picture;
 
 import java.net.URI;
 
-import edu.umich.andrewbull.piedpiper.Dish;
-import edu.umich.andrewbull.piedpiper.Hours;
-import edu.umich.andrewbull.piedpiper.Review;
-
 /**
  * Created by andrewbull on 11/9/17.
  */
@@ -15,7 +11,7 @@ import edu.umich.andrewbull.piedpiper.Review;
 public final class Restaurant {
 
     private String restaurantName;
-    private Location location;
+    //private edu.umich.andrewbull.piedpiper.Location location;
     private String phoneNumber;
     private URI uri;
     private Hours hours;

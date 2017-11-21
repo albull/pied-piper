@@ -1,5 +1,4 @@
-import edu.umich.andrewbull.piedpiper.Dish;
-import edu.umich.andrewbull.piedpiper.Review;
+package edu.umich.andrewbull.piedpiper;
 
 /**
  * Created by andrewbull on 11/9/17.

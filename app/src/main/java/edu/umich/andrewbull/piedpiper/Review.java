@@ -12,7 +12,7 @@ public final class Review {
 //    private Double restaurantRating;
 //    private String dishReview;
 //    private String restaurantReview;
-    //private User user;
+    //private edu.umich.andrewbull.piedpiper.User user;
 
     public Review() {
         super();

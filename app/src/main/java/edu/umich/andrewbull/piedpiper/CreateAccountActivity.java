@@ -45,10 +45,10 @@ public class CreateAccountActivity extends Activity implements View.OnClickListe
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    // User is signed in
+                    // edu.umich.andrewbull.piedpiper.User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
                 } else {
-                    // User is signed out
+                    // edu.umich.andrewbull.piedpiper.User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
                 // ...
