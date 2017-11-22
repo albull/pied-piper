@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class HomeActivity extends Activity implements Button.OnClickListener {
+public class HomeActivity extends Activity implements View.OnClickListener {
 
 
     private ImageButton imageButtonDish1, imageButtonDish2, imageButtonDish3, imageButtonDish4;
@@ -34,35 +34,32 @@ public class HomeActivity extends Activity implements Button.OnClickListener {
             textViewDish4 = (TextView) findViewById(R.id.textViewDish4);
             addReviewButton = (Button) findViewById(R.id.addReviewButton);
 
-            addReviewButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent addReviewActivityIntent = new Intent(HomeActivity.this, AddReviewActivity.class);
-                    startActivity(addReviewActivityIntent);
-                }
-            });
-            textViewDish1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent searchResultsActivityIntent = new Intent(HomeActivity.this, SearchResultsViewActivity.class);
-                    startActivity(searchResultsActivityIntent);
-                }
-            });
+
+
             imageButtonDish1.setOnClickListener(this);
             imageButtonDish2.setOnClickListener(this);
             imageButtonDish3.setOnClickListener(this);
             imageButtonDish4.setOnClickListener(this);
+            textViewDish1.setOnClickListener(this);
+            textViewDish2.setOnClickListener(this);
+            textViewDish3.setOnClickListener(this);
+            textViewDish4.setOnClickListener(this);
+            addReviewButton.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view == imageButtonDish1 || view == imageButtonDish2 || view == imageButtonDish3 || view == imageButtonDish4) {
+        if (view == imageButtonDish1 || view == imageButtonDish2 || view == imageButtonDish3 || view == imageButtonDish4
+                || view == textViewDish1 || view == textViewDish2 || view == textViewDish3 || view == textViewDish4) {
             Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
             Bundle b = new Bundle();
             b.putString("categoryId", "pizza");
             searchResults.putExtra("categoryId", "pizza");
             this.startActivity(searchResults);
 
+        } else if(view == addReviewButton) {
+            Intent addReviewActivity = new Intent(this, AddReviewActivity.class);
+            startActivity(addReviewActivity);
         }
     }
 
