@@ -1,8 +1,8 @@
 package edu.umich.andrewbull.piedpiper;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,7 +13,7 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AddReviewActivity extends AppCompatActivity {
+public class AddReviewActivity extends Activity {
 
     private Button submitReviewButton;
     private EditText restaurantNameEditText;
@@ -35,7 +35,6 @@ public class AddReviewActivity extends AppCompatActivity {
         dishNameEditText = (EditText) findViewById(R.id.dishNameEditText);
         dishRatingEditText = (EditText) findViewById(R.id.dishRatingEditText);
         dishReviewEditText = (EditText) findViewById(R.id.dishReviewEditText);
-
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         submitReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -58,7 +58,7 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
                 for(DataSnapshot child : dataSnapshot.child(categoryId).child("dishes").getChildren()) {
                     String dishId = child.getKey();
 
-                    
+
 
                 }
 

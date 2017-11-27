@@ -49,16 +49,16 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (view == imageButtonDish1 || view == imageButtonDish2 || view == imageButtonDish3 || view == imageButtonDish4
-                || view == textViewDish1 || view == textViewDish2 || view == textViewDish3 || view == textViewDish4) {
+        if (view.equals(imageButtonDish1) || view.equals(imageButtonDish2) || view.equals(imageButtonDish3) || view.equals(imageButtonDish4)
+                || view.equals(textViewDish1) || view.equals(textViewDish2) || view.equals(textViewDish3) || view.equals(textViewDish4)) {
             Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
             Bundle b = new Bundle();
             b.putString("categoryId", "pizza");
             searchResults.putExtra("categoryId", "pizza");
             this.startActivity(searchResults);
 
-        } else if(view == addReviewButton) {
-            Intent addReviewActivity = new Intent(this, AddReviewActivity.class);
+        } else if(view.equals(addReviewButton)) {
+            Intent addReviewActivity = new Intent(HomeActivity.this, AddReviewActivity.class);
             startActivity(addReviewActivity);
         }
     }
