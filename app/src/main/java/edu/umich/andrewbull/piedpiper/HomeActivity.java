@@ -18,6 +18,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     private TextView textViewDish1, textViewDish2, textViewDish3, textViewDish4;
     private Button addReviewButton;
 
+    private String category1, category2, category3, category4;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,15 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             addReviewButton = (Button) findViewById(R.id.addReviewButton);
 
 
+            category1 = "pizza";
+            category2 = "pasta";
+            category3 = "sandwiches";
+            category4 = "burgers";
+
+            textViewDish1.setText(category1);
+            textViewDish2.setText(category2);
+            textViewDish3.setText(category3);
+            textViewDish4.setText(category4);
 
             imageButtonDish1.setOnClickListener(this);
             imageButtonDish2.setOnClickListener(this);
@@ -53,8 +64,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         {
             Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
             Bundle b = new Bundle();
-            b.putString("categoryId", "pizza");
-            searchResults.putExtra("categoryId", "pizza");
+            b.putString("categoryId", category1);
+            searchResults.putExtra("categoryId", category1);
             this.startActivity(searchResults);
 
         }
@@ -62,24 +73,24 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         {
             Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
             Bundle b = new Bundle();
-            b.putString("categoryId", "pasta");
-            searchResults.putExtra("categoryId", "pasta");
+            b.putString("categoryId", category2);
+            searchResults.putExtra("categoryId", category2);
             this.startActivity(searchResults);
         }
         else if(view.equals(imageButtonDish3) || view.equals(textViewDish3))
         {
             Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
             Bundle b = new Bundle();
-            b.putString("categoryId", "sandwiches");
-            searchResults.putExtra("categoryId", "sandwiches");
+            b.putString("categoryId", category3);
+            searchResults.putExtra("categoryId", category3);
             this.startActivity(searchResults);
         }
         else if(view.equals(imageButtonDish4) || view.equals(textViewDish4))
         {
             Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
             Bundle b = new Bundle();
-            b.putString("categoryId", "burgers");
-            searchResults.putExtra("categoryId", "burgers");
+            b.putString("categoryId", category4);
+            searchResults.putExtra("categoryId", category4);
             this.startActivity(searchResults);
         }
         else if(view.equals(addReviewButton))
