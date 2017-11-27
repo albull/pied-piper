@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,10 +43,10 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
         textViewRestaurant3 = (TextView) findViewById(R.id.textViewRestaurant3);
         textViewSeeMoreDish = (TextView) findViewById(R.id.textViewSeeMoreDish);
         textViewSeeMoreRestaurant = (TextView) findViewById(R.id.textViewSeeMoreRestaurant);
-        //categoryId = getIntent().getStringExtra("categoryId");
-        categoryId = "pizza";
+        categoryId = getIntent().getStringExtra("categoryId");
+        //categoryId = "pizza";
 
-
+        Toast.makeText(SearchResultsViewActivity.this, categoryId, Toast.LENGTH_SHORT).show();
 
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();

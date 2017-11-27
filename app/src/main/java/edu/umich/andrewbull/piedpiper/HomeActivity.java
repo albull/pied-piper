@@ -49,15 +49,41 @@ public class HomeActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (view.equals(imageButtonDish1) || view.equals(imageButtonDish2) || view.equals(imageButtonDish3) || view.equals(imageButtonDish4)
-                || view.equals(textViewDish1) || view.equals(textViewDish2) || view.equals(textViewDish3) || view.equals(textViewDish4)) {
+        if (view.equals(imageButtonDish1) || view.equals(textViewDish1) )
+        {
             Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
             Bundle b = new Bundle();
             b.putString("categoryId", "pizza");
             searchResults.putExtra("categoryId", "pizza");
             this.startActivity(searchResults);
 
-        } else if(view.equals(addReviewButton)) {
+        }
+        else if(view.equals(imageButtonDish2) || view.equals(textViewDish2))
+        {
+            Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
+            Bundle b = new Bundle();
+            b.putString("categoryId", "pasta");
+            searchResults.putExtra("categoryId", "pasta");
+            this.startActivity(searchResults);
+        }
+        else if(view.equals(imageButtonDish3) || view.equals(textViewDish3))
+        {
+            Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
+            Bundle b = new Bundle();
+            b.putString("categoryId", "sandwiches");
+            searchResults.putExtra("categoryId", "sandwiches");
+            this.startActivity(searchResults);
+        }
+        else if(view.equals(imageButtonDish4) || view.equals(textViewDish4))
+        {
+            Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
+            Bundle b = new Bundle();
+            b.putString("categoryId", "burgers");
+            searchResults.putExtra("categoryId", "burgers");
+            this.startActivity(searchResults);
+        }
+        else if(view.equals(addReviewButton))
+        {
             Intent addReviewActivity = new Intent(HomeActivity.this, AddReviewActivity.class);
             startActivity(addReviewActivity);
         }

@@ -1,8 +1,8 @@
 package edu.umich.andrewbull.piedpiper;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-public class Account extends AppCompatActivity {
+public class Account extends Activity {
 
     private TextView textViewUsername;
     private ImageView imageViewProfile;
