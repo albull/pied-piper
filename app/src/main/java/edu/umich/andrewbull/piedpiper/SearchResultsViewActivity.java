@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class SearchResultsViewActivity extends Activity implements View.OnClickListener{
 
     private TextView textViewDish1;
@@ -27,8 +29,10 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
     private TextView textViewSeeMoreDish;
     private TextView textViewSeeMoreRestaurant;
     private String categoryId;
-    private Dish[] dishes;
-    private Restaurant[] restaurants;
+    private ArrayList<Dish> dishes;
+    private ArrayList<Restaurant> restaurants;
+    private Integer dishCount;
+    private Integer restaurantCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,11 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
         textViewSeeMoreDish = (TextView) findViewById(R.id.textViewSeeMoreDish);
         textViewSeeMoreRestaurant = (TextView) findViewById(R.id.textViewSeeMoreRestaurant);
         categoryId = getIntent().getStringExtra("categoryId");
+
+        dishes = new ArrayList<Dish>();
+        restaurants = new ArrayList<Restaurant>();
+        dishCount = 0;
+        restaurantCount = 0;
         //categoryId = "pizza";
 
         Toast.makeText(SearchResultsViewActivity.this, categoryId, Toast.LENGTH_SHORT).show();
@@ -57,15 +66,48 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot child : dataSnapshot.child(categoryId).child("dishes").getChildren()) {
-                    String dishId = child.getKey();
+                    final String dishId = child.getKey();
 
+                    DatabaseReference dishReference = database.getReference("dishes");
+                    dishReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            DataSnapshot dish = dataSnapshot.child(dishId);
+                            Toast.makeText(SearchResultsViewActivity.this, dishId, Toast.LENGTH_SHORT).show();
+                            Dish d = dish.getValue(Dish.class);
+                            Toast.makeText(SearchResultsViewActivity.this, d.getDishName(), Toast.LENGTH_SHORT).show();
+                            dishes.add(d);
+                            setDishText(d);
 
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
 
                 }
 
                 for(DataSnapshot child : dataSnapshot.child(categoryId).child("restaurants").getChildren()) {
-                    String restaurantId = child.getKey();
+                    final String restaurantId = child.getKey();
 
+                    DatabaseReference restaurantReference = database.getReference("restaurants");
+                    restaurantReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            DataSnapshot restaurant = dataSnapshot.child(restaurantId);
+
+                            Restaurant r = restaurant.getValue(Restaurant.class);
+                            setRestaurantText(r);
+                            restaurants.add(r);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
                 }
 
 
@@ -96,12 +138,52 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
             this.startActivity(seeMore);
         } else if(view == textViewDish1 || view == textViewDish2 || view == textViewDish3) {
             Intent dishView = new Intent(this, DishViewActivity.class);
+            Bundle b = new Bundle();
+
             this.startActivity(dishView);
         } else if(view == textViewRestaurant1 || view == textViewRestaurant2 || view == textViewRestaurant3) {
             Intent restaurantView = new Intent(this, RestaurantViewActivity.class);
             this.startActivity(restaurantView);
         }
 
+    }
+
+    public void setDishText(Dish dish) {
+        //TODO: get restaurant name from the restaurant id
+        //maybe export it to another function for the sake of abstraction
+        if(dishCount == 0) {
+            String text = "1. " + dish.getDishName() + " from " + dish.getRestaurant();
+            textViewDish1.setText(text);
+            dishCount++;
+        }
+        else if(dishCount == 1) {
+            String text = "2. " + dish.getDishName() + " from " + dish.getRestaurant();
+            textViewDish2.setText(text);
+            dishCount++;
+        }
+        else if(dishCount == 2) {
+            String text = "3. " + dish.getDishName() + " from " + dish.getRestaurant();
+            textViewDish3.setText(text);
+            dishCount++;
+        }
+    }
+
+    public void setRestaurantText(Restaurant restaurant) {
+        if(restaurantCount == 0) {
+            String text = "1. " + restaurant.getRestaurantName();
+            textViewRestaurant1.setText(text);
+            restaurantCount++;
+        }
+        else if(restaurantCount == 1) {
+            String text = "2. " + restaurant.getRestaurantName();
+            textViewRestaurant2.setText(text);
+            restaurantCount++;
+        }
+        else if(restaurantCount == 2) {
+            String text = "3. " + restaurant.getRestaurantName();
+            textViewRestaurant3.setText(text);
+            restaurantCount++;
+        }
     }
 
     public void getDish(String dishId) {

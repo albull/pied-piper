@@ -1,8 +1,6 @@
 package edu.umich.andrewbull.piedpiper;
 
-import android.graphics.Picture;
-
-import java.net.URI;
+import java.util.Map;
 
 /**
  * Created by andrewbull on 11/9/17.
@@ -13,16 +11,22 @@ public final class Restaurant {
     private String restaurantName;
     //private edu.umich.andrewbull.piedpiper.Location location;
     private String phoneNumber;
-    private URI uri;
-    private Hours hours;
+    private String uri;
+    //private Hours hours;
     private Boolean deliveryOptions;
-    private Dish[] dishes;
-    private Review[] reviews;
-    private Picture[] pictures;
+    //private Dish[] dishes;
+    //private Review[] reviews;
+    //private Picture[] pictures;
     private Double averageRating;
+    private Map<String, Boolean> dishes;
 
 
     public Restaurant() {
         super();
+    }
+
+    public String getRestaurantName() {
+        return this.restaurantName;
+
     }
 }
