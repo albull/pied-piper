@@ -75,6 +75,7 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
                             DataSnapshot dish = dataSnapshot.child(dishId);
                             Toast.makeText(SearchResultsViewActivity.this, dishId, Toast.LENGTH_SHORT).show();
                             Dish d = dish.getValue(Dish.class);
+                            d.setDishId(dishId);
                             Toast.makeText(SearchResultsViewActivity.this, d.getDishName(), Toast.LENGTH_SHORT).show();
                             dishes.add(d);
                             setDishText(d);
@@ -99,6 +100,7 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
                             DataSnapshot restaurant = dataSnapshot.child(restaurantId);
 
                             Restaurant r = restaurant.getValue(Restaurant.class);
+                            r.setRestaurantId(restaurantId);
                             setRestaurantText(r);
                             restaurants.add(r);
                         }
@@ -136,12 +138,28 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
         if(view == textViewSeeMoreDish || view == textViewSeeMoreRestaurant) {
             Intent seeMore = new Intent(this, SeeMoreActivity.class);
             this.startActivity(seeMore);
-        } else if(view == textViewDish1 || view == textViewDish2 || view == textViewDish3) {
+        } else if(view == textViewDish1) {
             Intent dishView = new Intent(this, DishViewActivity.class);
             Bundle b = new Bundle();
-
+            Dish d = dishes.get(0);
+            dishView.putExtra("dishId", d.getDishId());
             this.startActivity(dishView);
-        } else if(view == textViewRestaurant1 || view == textViewRestaurant2 || view == textViewRestaurant3) {
+        }
+        else if(view == textViewDish2) {
+            Intent dishView = new Intent(this, DishViewActivity.class);
+            Bundle b = new Bundle();
+            Dish d = dishes.get(1);
+            dishView.putExtra("dishId", d.getDishId());
+            this.startActivity(dishView);
+        }
+        else if(view == textViewDish3) {
+            Intent dishView = new Intent(this, DishViewActivity.class);
+            Bundle b = new Bundle();
+            Dish d = dishes.get(2);
+            dishView.putExtra("dishId", d.getDishId());
+            this.startActivity(dishView);
+        }
+        else if(view == textViewRestaurant1 || view == textViewRestaurant2 || view == textViewRestaurant3) {
             Intent restaurantView = new Intent(this, RestaurantViewActivity.class);
             this.startActivity(restaurantView);
         }

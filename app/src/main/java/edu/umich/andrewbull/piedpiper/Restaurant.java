@@ -19,6 +19,7 @@ public final class Restaurant {
     //private Picture[] pictures;
     private Double averageRating;
     private Map<String, Boolean> dishes;
+    private String restaurantId;
 
 
     public Restaurant() {
@@ -28,5 +29,9 @@ public final class Restaurant {
     public String getRestaurantName() {
         return this.restaurantName;
 
+    }
+
+    public void setRestaurantId(String restaurantId) {
+        this.restaurantId = restaurantId;
     }
 }

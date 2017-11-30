@@ -9,6 +9,7 @@ import android.os.Parcelable;
 
 public final class Dish implements Parcelable {
 
+    private String dishId;
     private String dishName;
     private String category;
     private String restaurant;
@@ -57,11 +58,19 @@ public final class Dish implements Parcelable {
         }
     };
 
-    private Dish(Parcel in) {
+    public Dish(Parcel in) {
         dishName = in.readString();
         category = in.readString();
         restaurant = in.readString();
         averageRating = in.readDouble();
 
+    }
+
+    public void setDishId(String dishId) {
+        this.dishId = dishId;
+    }
+
+    public String getDishId() {
+        return this.dishId;
     }
 }

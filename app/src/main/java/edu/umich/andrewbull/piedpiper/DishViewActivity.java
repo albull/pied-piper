@@ -10,6 +10,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class DishViewActivity extends Activity implements View.OnClickListener {
 
@@ -22,6 +29,7 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
     private TextView textViewReviewOne;
     private TextView textViewReviewTwo;
     private TextView textViewReviewThree;
+    private String dishId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +51,35 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
         textViewReviewTwo.setOnClickListener(this);
         textViewReviewThree.setOnClickListener(this);
 
+        dishId = getIntent().getStringExtra("dishId");
+
+        Toast.makeText(this, dishId, Toast.LENGTH_SHORT).show();
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        DatabaseReference dishReference = database.getReference("dishes");
+        dishReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                DataSnapshot dish = dataSnapshot.child(dishId);
+                Toast.makeText(DishViewActivity.this, dishId, Toast.LENGTH_SHORT).show();
+                Dish d = dish.getValue(Dish.class);
+                d.setDishId(dishId);
+                Toast.makeText(DishViewActivity.this, d.getRestaurant(), Toast.LENGTH_SHORT).show();
+
+                setDishText(d);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setDishText(Dish d) {
+        textViewDishName.setText(d.getDishName());
+        textViewRestaurantName.setText(d.getRestaurant());
     }
 
     @Override
