@@ -8,23 +8,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        >
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+
+
             </intent-filter>
+
         </activity>
         <activity android:name=".AddReviewActivity" />
         <activity android:name=".RestaurantViewActivity" />
         <activity android:name=".DishViewActivity" />
         <activity android:name=".Account" />
-        <activity android:name=".LoginActivity" />
         <activity android:name=".SearchResultsViewActivity" />
         <activity android:name=".SeeMoreActivity" />
         <activity android:name=".SpecificReviewActivity" />
-        <activity android:name=".CreateAccountActivity"></activity>
+        <activity android:name=".CreateAccountActivity" />
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>

@@ -20,7 +20,7 @@
         app:layout_constraintHorizontal_bias="0.498" />
 
     <TextView
-        android:id="@+id/textViewRestuarantName"
+        android:id="@+id/textViewRestaurantName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Restaurant Name"
@@ -41,7 +41,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRestuarantName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantName"
         app:layout_constraintVertical_bias="0.022" />
 
     <TextView
@@ -126,7 +126,7 @@
         app:layout_constraintRight_toLeftOf="@+id/textViewDishRating"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/buttonAddReview"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRestuarantName"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRestaurantName"
         app:layout_constraintVertical_bias="0.639" />
 
 </android.support.constraint.ConstraintLayout>
