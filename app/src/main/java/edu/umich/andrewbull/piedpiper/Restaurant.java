@@ -8,6 +8,34 @@ import java.util.Map;
 
 public final class Restaurant {
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public Boolean getDeliveryOptions() {
+        return deliveryOptions;
+    }
+
+    public Double getAverageRating() {
+        return averageRating;
+    }
+
+    public Map<String, Boolean> getDishes() {
+        return dishes;
+    }
+
+    public String getRestaurantId() {
+        return restaurantId;
+    }
+
+    public String getAddressLine1() {
+        return addressLine1;
+    }
+
     private String restaurantName;
     //private edu.umich.andrewbull.piedpiper.Location location;
     private String phoneNumber;
@@ -20,7 +48,7 @@ public final class Restaurant {
     private Double averageRating;
     private Map<String, Boolean> dishes;
     private String restaurantId;
-
+    private String addressLine1;
 
     public Restaurant() {
         super();
