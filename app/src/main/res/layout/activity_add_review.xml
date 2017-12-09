@@ -18,9 +18,9 @@
         app:layout_constraintTop_toBottomOf="@+id/restaurantReviewEditText"
         app:layout_constraintVertical_bias="0.49" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/restaurantNameEditText"
-        android:layout_width="148dp"
+        android:layout_width="152dp"
         android:layout_height="39dp"
         android:ems="10"
         android:hint="Restaurant"
@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toTopOf="@+id/dishNameEditText"
         app:layout_constraintTop_toBottomOf="@+id/restaurantNameEditText" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/dishNameEditText"
         android:layout_width="152dp"
         android:layout_height="40dp"
@@ -107,5 +107,14 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dishReviewEditText" />
+
+    <android.support.constraint.Guideline
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/guideline3"
+        app:layout_constraintGuide_begin="20dp"
+        android:orientation="vertical" />
+
+
 
 </android.support.constraint.ConstraintLayout>
