@@ -51,7 +51,7 @@ public final class Restaurant {
     private String addressLine1;
 
     public Restaurant() {
-        super();
+
     }
 
     public String getRestaurantName() {
