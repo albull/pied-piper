@@ -71,6 +71,8 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             textViewDish3.setOnClickListener(this);
             textViewDish4.setOnClickListener(this);
 
+        bringCategoryItemsToFront();
+
 
         searchSuggestionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -86,6 +88,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             public boolean onClose() {
                 searchSuggestionsListView.setBackgroundColor(Color.TRANSPARENT);
                 searchSuggestionsListView.setAdapter(null);
+                bringCategoryItemsToFront();
                 return false;
             }
         });
@@ -185,6 +188,18 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void bringCategoryItemsToFront() {
+        imageButtonDish1.bringToFront();
+        imageButtonDish2.bringToFront();
+        imageButtonDish3.bringToFront();
+        imageButtonDish4.bringToFront();
+
+        textViewDish1.bringToFront();
+        textViewDish2.bringToFront();
+        textViewDish3.bringToFront();
+        textViewDish4.bringToFront();
     }
 
 
