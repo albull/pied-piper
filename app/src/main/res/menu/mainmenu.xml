@@ -6,6 +6,9 @@
         android:id="@+id/menuItemHome"
         android:title="Home" />
     <item
+        android:id="@+id/menuItemAddReview"
+        android:title="Add Review" />
+    <item
         android:id="@+id/menuItemMyAccount"
         android:title="My Account" />
     <item

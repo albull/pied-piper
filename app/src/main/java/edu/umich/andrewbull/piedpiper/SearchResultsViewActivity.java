@@ -34,6 +34,7 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
     private Integer dishCount;
     private Integer restaurantCount;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,8 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
                             d.setDishId(dishId);
                             Toast.makeText(SearchResultsViewActivity.this, d.getDishName(), Toast.LENGTH_SHORT).show();
                             dishes.add(d);
+
+
                             setDishText(d);
 
                         }
@@ -101,6 +104,9 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
 
                             Restaurant r = restaurant.getValue(Restaurant.class);
                             r.setRestaurantId(restaurantId);
+
+
+
                             setRestaurantText(r);
                             restaurants.add(r);
                         }
