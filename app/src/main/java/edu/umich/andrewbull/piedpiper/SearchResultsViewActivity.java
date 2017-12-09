@@ -2,11 +2,17 @@ package edu.umich.andrewbull.piedpiper;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +40,11 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
     private Integer dishCount;
     private Integer restaurantCount;
 
+    private SearchView searchView;
+    private ListView searchSuggestionsListView;
+    private SearchSuggestions searchSuggestions;
+    private ArrayAdapter<String> arrayAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +60,11 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
         textViewSeeMoreDish = (TextView) findViewById(R.id.textViewSeeMoreDish);
         textViewSeeMoreRestaurant = (TextView) findViewById(R.id.textViewSeeMoreRestaurant);
         categoryId = getIntent().getStringExtra("categoryId");
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        searchView = (SearchView) findViewById(R.id.searchView);
+        searchSuggestionsListView = (ListView) findViewById(R.id.searchSuggestionsListView);
+        searchSuggestions = new SearchSuggestions();
 
         dishes = new ArrayList<Dish>();
         restaurants = new ArrayList<Restaurant>();
@@ -61,6 +77,58 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference categoryReference = database.getReference("categories");
+
+        searchSuggestionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String id = searchSuggestions.suggestionMap.get(searchSuggestions.suggestions.get(i));
+                Intent searchResultsIntent = new Intent(SearchResultsViewActivity.this, SearchResultsViewActivity.class);
+                searchResultsIntent.putExtra("categoryId", id);
+                startActivity(searchResultsIntent);
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                searchSuggestionsListView.setBackgroundColor(Color.TRANSPARENT);
+                searchSuggestionsListView.setAdapter(null);
+                bringCategoryItemsToFront();
+                return false;
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                String id = searchSuggestions.suggestionMap.get(s);
+                Intent searchResultsIntent = new Intent(SearchResultsViewActivity.this, SearchResultsViewActivity.class);
+                searchResultsIntent.putExtra("categoryId", id);
+                searchView.bringToFront();
+                searchView.setBackgroundColor(Color.WHITE);
+                searchSuggestionsListView.bringToFront();
+                startActivity(searchResultsIntent);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+
+
+//                searchSuggestionsListView.getBackground().setAlpha(51);
+                searchSuggestionsListView.setBackgroundColor(Color.WHITE);
+
+
+                arrayAdapter = new ArrayAdapter<String>(SearchResultsViewActivity.this, R.layout.searchsuggestions, searchSuggestions.suggestions);
+                arrayAdapter.getFilter().filter(s);
+                searchSuggestionsListView.setAdapter(arrayAdapter);
+                searchSuggestionsListView.bringToFront();
+
+
+                return false;
+            }
+        });
+
+
 
         categoryReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -272,6 +340,17 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void bringCategoryItemsToFront() {
+        textViewDish1.bringToFront();
+        textViewDish2.bringToFront();
+        textViewDish3.bringToFront();
+        textViewRestaurant1.bringToFront();
+        textViewRestaurant2.bringToFront();
+        textViewRestaurant3.bringToFront();
+        textViewSeeMoreDish.bringToFront();
+        textViewSeeMoreRestaurant.bringToFront();
     }
 
 }
