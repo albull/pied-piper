@@ -2,13 +2,19 @@ package edu.umich.andrewbull.piedpiper;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +37,11 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
     private TextView textViewReviewThree;
     private String dishId;
 
+    private SearchView searchView;
+    private ListView searchSuggestionsListView;
+    private SearchSuggestions searchSuggestions;
+    private ArrayAdapter<String> arrayAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,10 +62,69 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
         textViewReviewTwo.setOnClickListener(this);
         textViewReviewThree.setOnClickListener(this);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        searchView = (SearchView) findViewById(R.id.searchView);
+        searchSuggestionsListView = (ListView) findViewById(R.id.searchSuggestionsListView);
+        searchSuggestions = new SearchSuggestions();
+
         dishId = getIntent().getStringExtra("dishId");
 
         Toast.makeText(this, dishId, Toast.LENGTH_SHORT).show();
+
+
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference categoryReference = database.getReference("categories");
+        bringCategoryItemsToFront();
+        searchSuggestionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                String id = searchSuggestions.suggestionMap.get(searchSuggestions.suggestions.get(i));
+                Intent searchResultsIntent = new Intent(DishViewActivity.this, SearchResultsViewActivity.class);
+                searchResultsIntent.putExtra("categoryId", id);
+                startActivity(searchResultsIntent);
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                searchSuggestionsListView.setBackgroundColor(Color.TRANSPARENT);
+                searchSuggestionsListView.setAdapter(null);
+                bringCategoryItemsToFront();
+                return false;
+            }
+        });
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                String id = searchSuggestions.suggestionMap.get(s);
+                Intent searchResultsIntent = new Intent(DishViewActivity.this, SearchResultsViewActivity.class);
+                searchResultsIntent.putExtra("categoryId", id);
+                searchView.bringToFront();
+                searchView.setBackgroundColor(Color.WHITE);
+                searchSuggestionsListView.bringToFront();
+                startActivity(searchResultsIntent);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+
+
+
+//                searchSuggestionsListView.getBackground().setAlpha(51);
+                searchSuggestionsListView.setBackgroundColor(Color.WHITE);
+
+
+                arrayAdapter = new ArrayAdapter<String>(DishViewActivity.this, R.layout.searchsuggestions, searchSuggestions.suggestions);
+                arrayAdapter.getFilter().filter(s);
+                searchSuggestionsListView.setAdapter(arrayAdapter);
+                searchSuggestionsListView.bringToFront();
+
+
+                return false;
+            }
+        });
 
         DatabaseReference dishReference = database.getReference("dishes");
         dishReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -118,6 +188,18 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void bringCategoryItemsToFront() {
+        textViewDishName.bringToFront();
+        textViewRestaurantName.bringToFront();
+        textViewAddress.bringToFront();
+        imageViewDishImage.bringToFront();
+        textViewDishRating.bringToFront();
+        buttonAddReview.bringToFront();
+        textViewReviewOne.bringToFront();
+        textViewReviewTwo.bringToFront();
+        textViewReviewThree.bringToFront();
     }
 
 }

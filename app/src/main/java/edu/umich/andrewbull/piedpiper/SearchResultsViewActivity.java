@@ -77,7 +77,7 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference categoryReference = database.getReference("categories");
-
+        bringCategoryItemsToFront();
         searchSuggestionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
