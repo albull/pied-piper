@@ -209,8 +209,15 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if(view == textViewSeeMoreDish || view == textViewSeeMoreRestaurant) {
+        if(view == textViewSeeMoreDish) {
             Intent seeMore = new Intent(this, SeeMoreActivity.class);
+            seeMore.putExtra("category", categoryId);
+            seeMore.putExtra("type","dishes");
+            this.startActivity(seeMore);
+        } else if(view == textViewSeeMoreRestaurant) {
+            Intent seeMore = new Intent(this, SeeMoreActivity.class);
+            seeMore.putExtra("category", categoryId);
+            seeMore.putExtra("type","restaurants");
             this.startActivity(seeMore);
         } else if(view == textViewDish1) {
             Intent dishView = new Intent(this, DishViewActivity.class);
@@ -244,7 +251,7 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
             Intent restaurantView = new Intent(this, RestaurantViewActivity.class);
             if(restaurants.size() >= 1) {
                 Restaurant r = restaurants.get(0);
-                restaurantView.putExtra("restaurantId", r.getRestaurantId());
+                restaurantView.putExtra("restaurantID", r.getRestaurantId());
                 this.startActivity(restaurantView);
             }
 
@@ -253,7 +260,7 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
             Intent restaurantView = new Intent(this, RestaurantViewActivity.class);
             if(restaurants.size() >= 2) {
                 Restaurant r = restaurants.get(1);
-                restaurantView.putExtra("restaurantId", r.getRestaurantId());
+                restaurantView.putExtra("restaurantID", r.getRestaurantId());
                 this.startActivity(restaurantView);
             }
 
@@ -262,7 +269,7 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
             Intent restaurantView = new Intent(this, RestaurantViewActivity.class);
             if(restaurants.size() >= 3) {
                 Restaurant r = restaurants.get(2);
-                restaurantView.putExtra("restaurantId", r.getRestaurantId());
+                restaurantView.putExtra("restaurantID", r.getRestaurantId());
                 this.startActivity(restaurantView);
             }
 

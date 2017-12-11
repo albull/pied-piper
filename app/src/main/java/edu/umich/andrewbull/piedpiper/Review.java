@@ -12,6 +12,7 @@ public final class Review {
     public String restaurantRating;
     public String dishReview;
     public String restaurantReview;
+    public String reviewId;
     //private edu.umich.andrewbull.piedpiper.User user;
 
     public Review() {

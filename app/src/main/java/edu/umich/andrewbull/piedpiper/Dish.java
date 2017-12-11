@@ -3,6 +3,8 @@ package edu.umich.andrewbull.piedpiper;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Map;
+
 /**
  * Created by andrewbull on 11/9/17.
  */
@@ -14,6 +16,11 @@ public final class Dish implements Parcelable {
     private String category;
     private String restaurant;
     private Double averageRating;
+    private Map<String, Boolean> reviews;
+
+    public Map<String, Boolean> getReviews() {
+        return reviews;
+    }
 
     public String getRestaurantName() {
         return restaurantName;
@@ -39,6 +46,12 @@ public final class Dish implements Parcelable {
         out.writeString(category);
         out.writeString(restaurant);
         out.writeDouble(averageRating);
+    }
+
+    public Double getAverageRating() { return this.averageRating; }
+
+    public void setAverageRating(Double averageRating) {
+        this.averageRating = averageRating;
     }
 
     public String getDishName() {

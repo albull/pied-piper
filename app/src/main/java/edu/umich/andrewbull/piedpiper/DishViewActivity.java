@@ -8,11 +8,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -24,17 +25,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 public class DishViewActivity extends Activity implements View.OnClickListener {
 
     private TextView textViewDishName;
     private TextView textViewRestaurantName;
-    private TextView textViewAddress;
-    private ImageView imageViewDishImage;
     private TextView textViewDishRating;
     private Button buttonAddReview;
-    private TextView textViewReviewOne;
-    private TextView textViewReviewTwo;
-    private TextView textViewReviewThree;
+    private ListView reviewsListView;
+    private ArrayList<Review> reviews;
+    private ReviewAdapter reviewAdapter;
+
     private String dishId;
 
     private SearchView searchView;
@@ -49,22 +52,25 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
 
         textViewDishName = (TextView) findViewById(R.id.textViewDishName);
         textViewRestaurantName = (TextView) findViewById(R.id.textViewRestaurantName);
-        textViewAddress = (TextView) findViewById(R.id.textViewAddress);
-        imageViewDishImage = (ImageView) findViewById(R.id.imageViewDishImage);
+
         textViewDishRating = (TextView) findViewById(R.id.textViewDishRating);
         buttonAddReview = (Button) findViewById(R.id.buttonAddReview);
-        textViewReviewOne = (TextView) findViewById(R.id.textViewReviewOne);
-        textViewReviewTwo = (TextView) findViewById(R.id.textViewReviewTwo);
-        textViewReviewThree = (TextView) findViewById(R.id.textViewReviewThree);
+
 
         buttonAddReview.setOnClickListener(this);
-        textViewReviewOne.setOnClickListener(this);
-        textViewReviewTwo.setOnClickListener(this);
-        textViewReviewThree.setOnClickListener(this);
+
+        reviews = new ArrayList<Review>();
+        reviewAdapter = new ReviewAdapter();
+        reviewsListView = (ListView) findViewById(R.id.reviewsListView);
+
+        reviewsListView.setAdapter(reviewAdapter);
+        reviewsListView.setOnItemClickListener(reviewAdapter);
+
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         searchView = (SearchView) findViewById(R.id.searchView);
+        searchView.setBackgroundColor(Color.WHITE);
         searchSuggestionsListView = (ListView) findViewById(R.id.searchSuggestionsListView);
         searchSuggestions = new SearchSuggestions();
 
@@ -127,6 +133,7 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
         });
 
         DatabaseReference dishReference = database.getReference("dishes");
+        final DatabaseReference reviewReference = database.getReference("reviews");
         dishReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -137,6 +144,24 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
                 Toast.makeText(DishViewActivity.this, d.getRestaurant(), Toast.LENGTH_SHORT).show();
 
                 setDishText(d);
+
+                for(final Map.Entry<String,Boolean> entry : d.getReviews().entrySet()) {
+                    reviewReference.child(entry.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Review r = dataSnapshot.getValue(Review.class);
+                            r.reviewId = entry.getKey();
+                            reviews.add(r);
+
+                            reviewAdapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
 
             }
 
@@ -149,7 +174,7 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
 
     private void setDishText(Dish d) {
         textViewDishName.setText(d.getDishName());
-        textViewRestaurantName.setText(d.getRestaurant());
+        textViewRestaurantName.setText(d.getRestaurantName());
     }
 
     @Override
@@ -157,9 +182,6 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
         if (view == buttonAddReview) {
             Intent addReview = new Intent(this, AddReviewActivity.class);
             this.startActivity(addReview);
-        } else if(view == textViewReviewOne || view == textViewReviewTwo || view == textViewReviewThree) {
-            Intent specificReview = new Intent(this, SpecificReviewActivity.class);
-            this.startActivity(specificReview);
         }
     }
 
@@ -193,13 +215,46 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
     public void bringCategoryItemsToFront() {
         textViewDishName.bringToFront();
         textViewRestaurantName.bringToFront();
-        textViewAddress.bringToFront();
-        imageViewDishImage.bringToFront();
         textViewDishRating.bringToFront();
         buttonAddReview.bringToFront();
-        textViewReviewOne.bringToFront();
-        textViewReviewTwo.bringToFront();
-        textViewReviewThree.bringToFront();
+
+    }
+
+    public class ReviewAdapter extends BaseAdapter implements ListView.OnItemClickListener  {
+
+        @Override
+        public int getCount() {
+            return reviews.size();
+        }
+
+        @Override
+        public Object getItem(int i) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int i) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup) {
+            view = getLayoutInflater().inflate(R.layout.reviewcell, null);
+
+            TextView ratingTextView = (TextView) view.findViewById(R.id.ratingTextView);
+            TextView reviewTextView = (TextView) view.findViewById(R.id.reviewTextView);
+
+
+            ratingTextView.setText(reviews.get(i).dishRating.toString() + "/5");
+            reviewTextView.setText(reviews.get(i).dishReview);
+
+            return view;
+        }
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        }
     }
 
 }
