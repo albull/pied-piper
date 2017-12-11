@@ -50,6 +50,7 @@ public final class Restaurant {
     private String restaurantId;
     private String addressLine1;
 
+
     public Restaurant() {
 
     }

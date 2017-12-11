@@ -14,6 +14,12 @@ public final class Dish implements Parcelable {
     private String category;
     private String restaurant;
     private Double averageRating;
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    private String restaurantName;
 //    private Review[] reviews;
 //    private Picture[] pictures;
 //    private String[] tags;

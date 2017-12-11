@@ -214,28 +214,58 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
             this.startActivity(seeMore);
         } else if(view == textViewDish1) {
             Intent dishView = new Intent(this, DishViewActivity.class);
-            Bundle b = new Bundle();
-            Dish d = dishes.get(0);
-            dishView.putExtra("dishId", d.getDishId());
-            this.startActivity(dishView);
+
+            if(dishes.size() >= 1) {
+                Dish d = dishes.get(0);
+                dishView.putExtra("dishId", d.getDishId());
+                this.startActivity(dishView);
+            }
         }
         else if(view == textViewDish2) {
             Intent dishView = new Intent(this, DishViewActivity.class);
-            Bundle b = new Bundle();
-            Dish d = dishes.get(1);
-            dishView.putExtra("dishId", d.getDishId());
-            this.startActivity(dishView);
+
+            if(dishes.size() >= 2) {
+                Dish d = dishes.get(1);
+                dishView.putExtra("dishId", d.getDishId());
+                this.startActivity(dishView);
+            }
         }
         else if(view == textViewDish3) {
             Intent dishView = new Intent(this, DishViewActivity.class);
-            Bundle b = new Bundle();
-            Dish d = dishes.get(2);
-            dishView.putExtra("dishId", d.getDishId());
-            this.startActivity(dishView);
+
+            if(dishes.size() >= 3) {
+                Dish d = dishes.get(2);
+                dishView.putExtra("dishId", d.getDishId());
+                this.startActivity(dishView);
+            }
+
         }
-        else if(view == textViewRestaurant1 || view == textViewRestaurant2 || view == textViewRestaurant3) {
+        else if(view == textViewRestaurant1) {
             Intent restaurantView = new Intent(this, RestaurantViewActivity.class);
-            this.startActivity(restaurantView);
+            if(restaurants.size() >= 1) {
+                Restaurant r = restaurants.get(0);
+                restaurantView.putExtra("restaurantId", r.getRestaurantId());
+                this.startActivity(restaurantView);
+            }
+
+        }
+        else if(view == textViewRestaurant2) {
+            Intent restaurantView = new Intent(this, RestaurantViewActivity.class);
+            if(restaurants.size() >= 2) {
+                Restaurant r = restaurants.get(1);
+                restaurantView.putExtra("restaurantId", r.getRestaurantId());
+                this.startActivity(restaurantView);
+            }
+
+        }
+        else if(view == textViewRestaurant3 ) {
+            Intent restaurantView = new Intent(this, RestaurantViewActivity.class);
+            if(restaurants.size() >= 3) {
+                Restaurant r = restaurants.get(2);
+                restaurantView.putExtra("restaurantId", r.getRestaurantId());
+                this.startActivity(restaurantView);
+            }
+
         }
 
     }
@@ -244,17 +274,17 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
         //TODO: get restaurant name from the restaurant id
         //maybe export it to another function for the sake of abstraction
         if(dishCount == 0) {
-            String text = "1. " + dish.getDishName() + " from " + dish.getRestaurant();
+            String text = "1. " + dish.getDishName() + " from " + dish.getRestaurantName();
             textViewDish1.setText(text);
             dishCount++;
         }
         else if(dishCount == 1) {
-            String text = "2. " + dish.getDishName() + " from " + dish.getRestaurant();
+            String text = "2. " + dish.getDishName() + " from " + dish.getRestaurantName();
             textViewDish2.setText(text);
             dishCount++;
         }
         else if(dishCount == 2) {
-            String text = "3. " + dish.getDishName() + " from " + dish.getRestaurant();
+            String text = "3. " + dish.getDishName() + " from " + dish.getRestaurantName();
             textViewDish3.setText(text);
             dishCount++;
         }
