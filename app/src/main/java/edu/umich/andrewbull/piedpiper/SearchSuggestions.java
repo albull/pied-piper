@@ -1,5 +1,7 @@
 package edu.umich.andrewbull.piedpiper;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,8 +29,10 @@ public class SearchSuggestions {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 suggestionMap = (Map<String, String>)dataSnapshot.getValue();
+
                 for(Map.Entry<String,String> entry : suggestionMap.entrySet()) {
                     suggestions.add(entry.getKey());
+                    Log.d("msg", entry.getKey() + entry.getValue());
                 }
             }
 

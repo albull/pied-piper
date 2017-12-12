@@ -85,7 +85,7 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
         searchSuggestionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String id = searchSuggestions.suggestionMap.get(searchSuggestions.suggestions.get(i));
+                String id = searchSuggestions.suggestionMap.get(arrayAdapter.getItem(i));
                 Intent searchResultsIntent = new Intent(DishViewActivity.this, SearchResultsViewActivity.class);
                 searchResultsIntent.putExtra("categoryId", id);
                 startActivity(searchResultsIntent);
@@ -175,6 +175,7 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
     private void setDishText(Dish d) {
         textViewDishName.setText(d.getDishName());
         textViewRestaurantName.setText(d.getRestaurantName());
+        textViewDishRating.setText(d.getAverageRating().toString() + "/5");
     }
 
     @Override

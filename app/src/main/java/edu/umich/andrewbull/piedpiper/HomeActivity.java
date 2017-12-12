@@ -66,6 +66,7 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             imageButtonDish2.setOnClickListener(this);
             imageButtonDish3.setOnClickListener(this);
             imageButtonDish4.setOnClickListener(this);
+
             textViewDish1.setOnClickListener(this);
             textViewDish2.setOnClickListener(this);
             textViewDish3.setOnClickListener(this);
@@ -77,7 +78,9 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         searchSuggestionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String id = searchSuggestions.suggestionMap.get(searchSuggestions.suggestions.get(i));
+
+
+                String id = searchSuggestions.suggestionMap.get(arrayAdapter.getItem(i));
                 Intent searchResultsIntent = new Intent(HomeActivity.this, SearchResultsViewActivity.class);
                 searchResultsIntent.putExtra("categoryId", id);
                 startActivity(searchResultsIntent);

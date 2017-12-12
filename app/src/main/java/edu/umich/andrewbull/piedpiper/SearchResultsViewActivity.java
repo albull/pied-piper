@@ -81,7 +81,7 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
         searchSuggestionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String id = searchSuggestions.suggestionMap.get(searchSuggestions.suggestions.get(i));
+                String id = searchSuggestions.suggestionMap.get(arrayAdapter.getItem(i));
                 Intent searchResultsIntent = new Intent(SearchResultsViewActivity.this, SearchResultsViewActivity.class);
                 searchResultsIntent.putExtra("categoryId", id);
                 startActivity(searchResultsIntent);

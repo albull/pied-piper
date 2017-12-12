@@ -118,7 +118,7 @@ public class RestaurantViewActivity extends Activity implements View.OnClickList
         searchSuggestionsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String id = searchSuggestions.suggestionMap.get(searchSuggestions.suggestions.get(i));
+                String id = searchSuggestions.suggestionMap.get(arrayAdapter.getItem(i));
                 Intent searchResultsIntent = new Intent(RestaurantViewActivity.this, SearchResultsViewActivity.class);
                 searchResultsIntent.putExtra("categoryId", id);
                 startActivity(searchResultsIntent);
@@ -170,7 +170,7 @@ public class RestaurantViewActivity extends Activity implements View.OnClickList
         textViewRestaurantName.setText(r.getRestaurantName());
         textViewAddress.setText(r.getAddressLine1());
         textViewPhoneNumber.setText(r.getPhoneNumber());
-        textViewRestaurantRating.setText(Double.toString(r.getAverageRating()));
+        textViewRestaurantRating.setText(Double.toString(r.getAverageRating()) + "/5");
     }
 
     @Override
