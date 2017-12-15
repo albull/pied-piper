@@ -9,6 +9,9 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class SpecificReviewActivity extends Activity {
 
     private TextView textViewRatingName;
@@ -54,8 +57,20 @@ public class SpecificReviewActivity extends Activity {
             Intent myAccount = new Intent(this, Account.class);
             this.startActivity(myAccount);
         }else if(item.getItemId() == R.id.menuItemLogInOut) {
-            Intent logInOut = new Intent(this, LoginActivity.class);
-            this.startActivity(logInOut);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                // Name, email address, and profile photo Url
+                Intent logout = new Intent(this, LogoutActivity.class);
+                startActivity(logout);
+            }
+            else {
+                Intent logInOut = new Intent(this, LoginActivity.class);
+                this.startActivity(logInOut);
+            }
+
+        }else if(item.getItemId() == R.id.menuItemAddReview) {
+            Intent addReviewActivity = new Intent(this, AddReviewActivity.class);
+            startActivity(addReviewActivity);
         }
 
         return super.onOptionsItemSelected(item);

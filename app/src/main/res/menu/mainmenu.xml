@@ -13,5 +13,5 @@
         android:title="My Account" />
     <item
         android:id="@+id/menuItemLogInOut"
-        android:title="Login / Logout" />
+        android:title="Login/Logout" />
 </menu>

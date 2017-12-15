@@ -15,6 +15,9 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class HomeActivity extends Activity implements View.OnClickListener {
 
 
@@ -217,14 +220,23 @@ public class HomeActivity extends Activity implements View.OnClickListener {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(item.getItemId() == R.id.menuItemHome) {
-            Intent goHome = new Intent(this, HomeActivity.class);
+            Intent goHome = new Intent(HomeActivity.this, HomeActivity.class);
             this.startActivity(goHome);
         } else if(item.getItemId() == R.id.menuItemMyAccount) {
             Intent myAccount = new Intent(this, Account.class);
             this.startActivity(myAccount);
         }else if(item.getItemId() == R.id.menuItemLogInOut) {
-            Intent logInOut = new Intent(this, LoginActivity.class);
-            this.startActivity(logInOut);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                // Name, email address, and profile photo Url
+                Intent logout = new Intent(HomeActivity.this, LogoutActivity.class);
+                startActivity(logout);
+            }
+            else {
+                Intent logInOut = new Intent(this, LoginActivity.class);
+                this.startActivity(logInOut);
+            }
+
         }else if(item.getItemId() == R.id.menuItemAddReview) {
             Intent addReviewActivity = new Intent(HomeActivity.this, AddReviewActivity.class);
             startActivity(addReviewActivity);

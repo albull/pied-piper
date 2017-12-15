@@ -13,6 +13,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -96,12 +98,24 @@ public class AddReviewActivity extends Activity {
                 String dishReview = dishReviewEditText.getText().toString();
                 String restaurantReview = restaurantReviewEditText.getText().toString();
 
-                Review myReview = new Review(dishId,restaurantId,dishRating,restaurantRating,dishReview,restaurantReview);
+                Review myReview = new Review(dishId,restaurantId,dishRating,restaurantRating,dishReview,restaurantReview, dishName, restaurantName);
 
                 String key = myRef.push().getKey();
                 myRef.child("reviews").child(key).setValue(myReview);
                 myRef.child("dishes").child(dishId).child("reviews").child(key).setValue(true);
                 myRef.child("restaurants").child(restaurantId).child("reviews").child(key).setValue(true);
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+
+
+                    // The user's ID, unique to the Firebase project. Do NOT use this value to
+                    // authenticate with your backend server, if you have one. Use
+                    // FirebaseUser.getToken() instead.
+                    String uid = user.getUid();
+
+                    myRef.child("users").child(uid).child("reviews").child(key).setValue(true);
+                }
 
 
                 Intent returnToHomeIntent = new Intent(AddReviewActivity.this, HomeActivity.class);
@@ -125,17 +139,30 @@ public class AddReviewActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(item.getItemId() == R.id.menuItemHome) {
-            Intent goHome = new Intent(this, HomeActivity.class);
+            Intent goHome = new Intent(AddReviewActivity.this, HomeActivity.class);
             this.startActivity(goHome);
         } else if(item.getItemId() == R.id.menuItemMyAccount) {
-            Intent myAccount = new Intent(this, Account.class);
+            Intent myAccount = new Intent(AddReviewActivity.this, Account.class);
             this.startActivity(myAccount);
         }else if(item.getItemId() == R.id.menuItemLogInOut) {
-            Intent logInOut = new Intent(this, LoginActivity.class);
-            this.startActivity(logInOut);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                // Name, email address, and profile photo Url
+                Intent logout = new Intent(AddReviewActivity.this, LogoutActivity.class);
+                startActivity(logout);
+            }
+            else {
+                Intent logInOut = new Intent(AddReviewActivity.this, LoginActivity.class);
+                this.startActivity(logInOut);
+            }
+
+        }else if(item.getItemId() == R.id.menuItemAddReview) {
+
         }
 
         return super.onOptionsItemSelected(item);
+
+
     }
 
 }

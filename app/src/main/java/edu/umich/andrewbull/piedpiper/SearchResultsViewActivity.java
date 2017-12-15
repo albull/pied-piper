@@ -15,6 +15,8 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -398,8 +400,20 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
             Intent myAccount = new Intent(this, Account.class);
             this.startActivity(myAccount);
         }else if(item.getItemId() == R.id.menuItemLogInOut) {
-            Intent logInOut = new Intent(this, LoginActivity.class);
-            this.startActivity(logInOut);
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                // Name, email address, and profile photo Url
+                Intent logout = new Intent(this, LogoutActivity.class);
+                startActivity(logout);
+            }
+            else {
+                Intent logInOut = new Intent(this, LoginActivity.class);
+                this.startActivity(logInOut);
+            }
+
+        }else if(item.getItemId() == R.id.menuItemAddReview) {
+            Intent addReviewActivity = new Intent(this, AddReviewActivity.class);
+            startActivity(addReviewActivity);
         }
 
         return super.onOptionsItemSelected(item);
