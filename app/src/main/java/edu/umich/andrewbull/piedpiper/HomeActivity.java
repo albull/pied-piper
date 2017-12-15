@@ -18,8 +18,8 @@ import android.widget.TextView;
 public class HomeActivity extends Activity implements View.OnClickListener {
 
 
-    private ImageButton imageButtonDish1, imageButtonDish2, imageButtonDish3, imageButtonDish4;
-    private TextView textViewDish1, textViewDish2, textViewDish3, textViewDish4;
+    private ImageButton imageButtonDish1, imageButtonDish2, imageButtonDish3, imageButtonDish4, imageButtonSushi, imageButtonTacos, imageButtonSalad, imageButtonNoodles;
+    private TextView textViewDish1, textViewDish2, textViewDish3, textViewDish4, textViewSushi, textViewTacos, textViewSalad, textViewNoodles;
 
 
     private String category1, category2, category3, category4;
@@ -42,10 +42,18 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             imageButtonDish2 = (ImageButton) findViewById(R.id.imageButtonDish2);
             imageButtonDish3 = (ImageButton) findViewById(R.id.imageButtonDish3);
             imageButtonDish4 = (ImageButton) findViewById(R.id.imageButtonDish4);
+            imageButtonSushi = (ImageButton) findViewById(R.id.imageButtonSushi);
+            imageButtonNoodles = (ImageButton) findViewById(R.id.imageButtonNoodles);
+            imageButtonTacos = (ImageButton) findViewById(R.id.imageButtonTaco);
+            imageButtonSalad = (ImageButton) findViewById(R.id.imageButtonSalad);
             textViewDish1 = (TextView) findViewById(R.id.textViewDish1);
             textViewDish2 = (TextView) findViewById(R.id.textViewDish2);
             textViewDish3 = (TextView) findViewById(R.id.textViewDish3);
             textViewDish4 = (TextView) findViewById(R.id.textViewDish4);
+            textViewSushi = (TextView) findViewById(R.id.textViewSushi);
+            textViewNoodles = (TextView) findViewById(R.id.textViewNoodles);
+            textViewSalad = (TextView) findViewById(R.id.textViewSalad);
+            textViewTacos = (TextView) findViewById(R.id.textViewTacos);
 
             searchView = (SearchView) findViewById(R.id.searchView);
             searchSuggestionsListView = (ListView) findViewById(R.id.searchSuggestionsListView);
@@ -66,11 +74,19 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             imageButtonDish2.setOnClickListener(this);
             imageButtonDish3.setOnClickListener(this);
             imageButtonDish4.setOnClickListener(this);
+            imageButtonTacos.setOnClickListener(this);
+            imageButtonSushi.setOnClickListener(this);
+            imageButtonSalad.setOnClickListener(this);
+            imageButtonNoodles.setOnClickListener(this);
 
             textViewDish1.setOnClickListener(this);
             textViewDish2.setOnClickListener(this);
             textViewDish3.setOnClickListener(this);
             textViewDish4.setOnClickListener(this);
+            textViewTacos.setOnClickListener(this);
+            textViewSushi.setOnClickListener(this);
+            textViewNoodles.setOnClickListener(this);
+            textViewSalad.setOnClickListener(this);
 
         bringCategoryItemsToFront();
 
@@ -160,6 +176,30 @@ public class HomeActivity extends Activity implements View.OnClickListener {
             searchResults.putExtra("categoryId", category4);
             this.startActivity(searchResults);
         }
+        else if(view.equals(imageButtonSushi) || view.equals(textViewSushi)) {
+            Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
+
+            searchResults.putExtra("categoryId", "sushi");
+            this.startActivity(searchResults);
+        }
+        else if(view.equals(imageButtonSalad) || view.equals(textViewSalad)) {
+            Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
+
+            searchResults.putExtra("categoryId", "salad");
+            this.startActivity(searchResults);
+        }
+        else if(view.equals(imageButtonNoodles) || view.equals(textViewNoodles)) {
+            Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
+
+            searchResults.putExtra("categoryId", "thai");
+            this.startActivity(searchResults);
+        }
+        else if(view.equals(imageButtonTacos) || view.equals(textViewTacos)) {
+            Intent searchResults = new Intent(this, SearchResultsViewActivity.class);
+
+            searchResults.putExtra("categoryId", "tacos");
+            this.startActivity(searchResults);
+        }
 
     }
 
@@ -198,11 +238,19 @@ public class HomeActivity extends Activity implements View.OnClickListener {
         imageButtonDish2.bringToFront();
         imageButtonDish3.bringToFront();
         imageButtonDish4.bringToFront();
+        imageButtonSushi.bringToFront();
+        imageButtonNoodles.bringToFront();
+        imageButtonTacos.bringToFront();
+        imageButtonSalad.bringToFront();
 
         textViewDish1.bringToFront();
         textViewDish2.bringToFront();
         textViewDish3.bringToFront();
         textViewDish4.bringToFront();
+        textViewSalad.bringToFront();
+        textViewNoodles.bringToFront();
+        textViewSushi.bringToFront();
+        textViewTacos.bringToFront();
     }
 
 

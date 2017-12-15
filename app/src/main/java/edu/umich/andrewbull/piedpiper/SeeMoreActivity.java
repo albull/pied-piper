@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class SeeMoreActivity extends Activity implements View.OnClickListener {
 
@@ -64,9 +65,16 @@ public class SeeMoreActivity extends Activity implements View.OnClickListener {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 Restaurant restaurant = dataSnapshot.getValue(Restaurant.class);
-                                Toast.makeText(SeeMoreActivity.this, restaurantId, Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(SeeMoreActivity.this, restaurantId, Toast.LENGTH_SHORT).show();
                                 restaurant.setRestaurantId(restaurantId);
                                 restaurants.add(restaurant);
+
+                                Collections.sort(restaurants, new Comparator<Restaurant>() {
+                                    @Override
+                                    public int compare(Restaurant restaurant, Restaurant t1) {
+                                        return t1.getAverageRating().compareTo(restaurant.getAverageRating());
+                                    }
+                                });
 
                                 seeMoreRestaurantAdapter.notifyDataSetChanged();
                             }
@@ -107,8 +115,15 @@ public class SeeMoreActivity extends Activity implements View.OnClickListener {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 Dish d = dataSnapshot.child(id).getValue(Dish.class);
                                 d.setDishId(id);
-                                Toast.makeText(SeeMoreActivity.this, d.getDishName(), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(SeeMoreActivity.this, d.getDishName(), Toast.LENGTH_SHORT).show();
                                 dishes.add(d);
+
+                                Collections.sort(dishes, new Comparator<Dish>() {
+                                    @Override
+                                    public int compare(Dish dish, Dish t1) {
+                                        return t1.getAverageRating().compareTo(dish.getAverageRating());
+                                    }
+                                });
 
                                 seeMoreDishAdapter.notifyDataSetChanged();
 
@@ -168,7 +183,7 @@ public class SeeMoreActivity extends Activity implements View.OnClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            Toast.makeText(SeeMoreActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(SeeMoreActivity.this, "clicked", Toast.LENGTH_SHORT).show();
             Intent dishViewIntent = new Intent(SeeMoreActivity.this, DishViewActivity.class);
             dishViewIntent.putExtra("dishId", dishes.get(i).getDishId());
             startActivity(dishViewIntent);
@@ -212,7 +227,7 @@ public class SeeMoreActivity extends Activity implements View.OnClickListener {
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
             Intent restaurantViewIntent = new Intent(SeeMoreActivity.this, RestaurantViewActivity.class);
-            Toast.makeText(SeeMoreActivity.this, restaurants.get(i).getRestaurantId(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(SeeMoreActivity.this, restaurants.get(i).getRestaurantId(), Toast.LENGTH_SHORT).show();
             restaurantViewIntent.putExtra("restaurantID", restaurants.get(i).getRestaurantId());
             startActivity(restaurantViewIntent);
         }

@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -76,7 +75,7 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
 
         dishId = getIntent().getStringExtra("dishId");
 
-        Toast.makeText(this, dishId, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, dishId, Toast.LENGTH_SHORT).show();
 
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -138,30 +137,32 @@ public class DishViewActivity extends Activity implements View.OnClickListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DataSnapshot dish = dataSnapshot.child(dishId);
-                Toast.makeText(DishViewActivity.this, dishId, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(DishViewActivity.this, dishId, Toast.LENGTH_SHORT).show();
                 Dish d = dish.getValue(Dish.class);
                 d.setDishId(dishId);
-                Toast.makeText(DishViewActivity.this, d.getRestaurant(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(DishViewActivity.this, d.getRestaurant(), Toast.LENGTH_SHORT).show();
 
                 setDishText(d);
+                if(d.getReviews() != null) {
+                    for(final Map.Entry<String,Boolean> entry : d.getReviews().entrySet()) {
+                        reviewReference.child(entry.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                Review r = dataSnapshot.getValue(Review.class);
+                                r.reviewId = entry.getKey();
+                                reviews.add(r);
 
-                for(final Map.Entry<String,Boolean> entry : d.getReviews().entrySet()) {
-                    reviewReference.child(entry.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            Review r = dataSnapshot.getValue(Review.class);
-                            r.reviewId = entry.getKey();
-                            reviews.add(r);
+                                reviewAdapter.notifyDataSetChanged();
+                            }
 
-                            reviewAdapter.notifyDataSetChanged();
-                        }
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
 
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
+
 
             }
 

@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -54,7 +53,7 @@ public class AddReviewActivity extends Activity {
         restaurantNameEditText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(AddReviewActivity.this, "hello", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(AddReviewActivity.this, "hello", Toast.LENGTH_SHORT).show();
 
                 dishSuggestions = new DishSuggestions(restaurantSuggestions.restaurantSuggestionsMap.get(restaurantNameEditText.getText().toString()).getDishes());
                 ArrayAdapter<String> suggestionArrayAdapter = new ArrayAdapter<String>(AddReviewActivity.this,R.layout.searchsuggestions,dishSuggestions.dishSuggestions);
@@ -65,7 +64,7 @@ public class AddReviewActivity extends Activity {
                 .setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(AddReviewActivity.this, "hello", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(AddReviewActivity.this, "hello", Toast.LENGTH_SHORT).show();
                 dishSuggestions = new DishSuggestions(restaurantSuggestions.restaurantSuggestionsMap.get(restaurantNameEditText.getText().toString()).getDishes());
 
             }

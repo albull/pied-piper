@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -26,6 +25,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 
 public class RestaurantViewActivity extends Activity implements View.OnClickListener{
@@ -73,7 +74,7 @@ public class RestaurantViewActivity extends Activity implements View.OnClickList
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        Toast.makeText(this, restaurantID, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, restaurantID, Toast.LENGTH_SHORT).show();
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
         DatabaseReference restaurantReference = database.getReference("restaurants");
@@ -81,21 +82,27 @@ public class RestaurantViewActivity extends Activity implements View.OnClickList
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 DataSnapshot restaurant = dataSnapshot.child(restaurantID);
-                Toast.makeText(RestaurantViewActivity.this, restaurantID, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RestaurantViewActivity.this, restaurantID, Toast.LENGTH_SHORT).show();
                 Restaurant r = restaurant.getValue(Restaurant.class);
                 r.setRestaurantId(restaurantID);
-                Toast.makeText(RestaurantViewActivity.this, r.getRestaurantName(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(RestaurantViewActivity.this, r.getRestaurantName(), Toast.LENGTH_SHORT).show();
 
                 setRestaurantText(r);
                 DatabaseReference dishReference = database.getReference("dishes");
                 for(Map.Entry<String,Boolean> entry : r.getDishes().entrySet()) {
-                    Toast.makeText(RestaurantViewActivity.this, entry.getKey(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(RestaurantViewActivity.this, entry.getKey(), Toast.LENGTH_SHORT).show();
                     dishReference.child(entry.getKey()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             Dish d = dataSnapshot.getValue(Dish.class);
                             d.setDishId(dataSnapshot.getKey());
                             dishes.add(d);
+                            Collections.sort(dishes, new Comparator<Dish>() {
+                                @Override
+                                public int compare(Dish dish, Dish t1) {
+                                    return t1.getAverageRating().compareTo(dish.getAverageRating());
+                                }
+                            });
                             dishAdapter.notifyDataSetChanged();
                         }
 

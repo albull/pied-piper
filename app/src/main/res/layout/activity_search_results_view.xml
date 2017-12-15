@@ -24,8 +24,7 @@
     <TextView
         android:id="@+id/textViewDish1"
         android:layout_width="299dp"
-        android:layout_height="28dp"
-        android:text="1. Philly Original Sandwich from Mister Spots"
+        android:layout_height="40dp"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewDish2"
         app:layout_constraintLeft_toLeftOf="@+id/textViewDish2"
@@ -34,19 +33,17 @@
     <TextView
         android:id="@+id/textViewDish2"
         android:layout_width="298dp"
-        android:layout_height="25dp"
-        android:text="2. Philly Cheesesteak from Pizza House"
+        android:layout_height="40dp"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewDish3"
+        app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintLeft_toLeftOf="@+id/textViewDish3"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDish1"
-        app:layout_constraintHorizontal_bias="0.431" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDish1" />
 
     <TextView
         android:id="@+id/textViewDish3"
         android:layout_width="274dp"
-        android:layout_height="26dp"
-        android:text="3. Philly Cheesesteak Sub from NYPD"
+        android:layout_height="40dp"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/textView6"
         app:layout_constraintHorizontal_bias="0.39"
@@ -69,7 +66,6 @@
         android:id="@+id/textViewRestaurant1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1. NYPD"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/textViewRestaurant2"
         app:layout_constraintHorizontal_bias="0.13"
@@ -80,7 +76,6 @@
         android:id="@+id/textViewRestaurant2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="2. Mister Spots"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.151"
@@ -92,7 +87,6 @@
         android:id="@+id/textViewRestaurant3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3. Pizza House"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.15"

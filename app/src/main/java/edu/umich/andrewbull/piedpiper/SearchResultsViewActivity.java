@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class SearchResultsViewActivity extends Activity implements View.OnClickListener{
 
@@ -72,7 +73,7 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
         restaurantCount = 0;
         //categoryId = "pizza";
 
-        Toast.makeText(SearchResultsViewActivity.this, categoryId, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(SearchResultsViewActivity.this, categoryId, Toast.LENGTH_SHORT).show();
 
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -142,14 +143,17 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             DataSnapshot dish = dataSnapshot.child(dishId);
-                            Toast.makeText(SearchResultsViewActivity.this, dishId, Toast.LENGTH_SHORT).show();
+
                             Dish d = dish.getValue(Dish.class);
                             d.setDishId(dishId);
-                            Toast.makeText(SearchResultsViewActivity.this, d.getDishName(), Toast.LENGTH_SHORT).show();
+
                             dishes.add(d);
 
 
-                            setDishText(d);
+                            setDishText();
+
+
+
 
                         }
 
@@ -175,8 +179,9 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
 
 
 
-                            setRestaurantText(r);
+
                             restaurants.add(r);
+                            setRestaurantText();
                         }
 
                         @Override
@@ -277,42 +282,63 @@ public class SearchResultsViewActivity extends Activity implements View.OnClickL
 
     }
 
-    public void setDishText(Dish dish) {
+    public void setDishText() {
         //TODO: get restaurant name from the restaurant id
         //maybe export it to another function for the sake of abstraction
-        if(dishCount == 0) {
-            String text = "1. " + dish.getDishName() + " from " + dish.getRestaurantName();
-            textViewDish1.setText(text);
-            dishCount++;
+        for(int i = 0; i < dishes.size(); i++) {
+            Collections.sort(dishes, new Comparator<Dish>() {
+                @Override
+                public int compare(Dish dish, Dish t1) {
+                    return t1.getAverageRating().compareTo(dish.getAverageRating());
+                }
+            });
+            Dish dish = dishes.get(i);
+            if(i == 0) {
+                String text = "1. " + dish.getDishName() + " from " + dish.getRestaurantName();
+                textViewDish1.setText(text);
+                dishCount++;
+            }
+            else if(i == 1) {
+                String text = "2. " + dish.getDishName() + " from " + dish.getRestaurantName();
+                textViewDish2.setText(text);
+                dishCount++;
+            }
+            else if(i == 2) {
+                String text = "3. " + dish.getDishName() + " from " + dish.getRestaurantName();
+                textViewDish3.setText(text);
+                dishCount++;
+            }
         }
-        else if(dishCount == 1) {
-            String text = "2. " + dish.getDishName() + " from " + dish.getRestaurantName();
-            textViewDish2.setText(text);
-            dishCount++;
-        }
-        else if(dishCount == 2) {
-            String text = "3. " + dish.getDishName() + " from " + dish.getRestaurantName();
-            textViewDish3.setText(text);
-            dishCount++;
-        }
+
     }
 
-    public void setRestaurantText(Restaurant restaurant) {
-        if(restaurantCount == 0) {
-            String text = "1. " + restaurant.getRestaurantName();
-            textViewRestaurant1.setText(text);
-            restaurantCount++;
+    public void setRestaurantText() {
+
+        for(int i = 0; i < restaurants.size(); i++) {
+            Collections.sort(restaurants, new Comparator<Restaurant>() {
+                @Override
+                public int compare(Restaurant restaurant, Restaurant t1) {
+                    return t1.getAverageRating().compareTo(restaurant.getAverageRating());
+                }
+            });
+            Restaurant restaurant = restaurants.get(i);
+            if(i == 0) {
+                String text = "1. " + restaurant.getRestaurantName();
+                textViewRestaurant1.setText(text);
+                restaurantCount++;
+            }
+            else if(i == 1) {
+                String text = "2. " + restaurant.getRestaurantName();
+                textViewRestaurant2.setText(text);
+                restaurantCount++;
+            }
+            else if(i == 2) {
+                String text = "3. " + restaurant.getRestaurantName();
+                textViewRestaurant3.setText(text);
+                restaurantCount++;
+            }
         }
-        else if(restaurantCount == 1) {
-            String text = "2. " + restaurant.getRestaurantName();
-            textViewRestaurant2.setText(text);
-            restaurantCount++;
-        }
-        else if(restaurantCount == 2) {
-            String text = "3. " + restaurant.getRestaurantName();
-            textViewRestaurant3.setText(text);
-            restaurantCount++;
-        }
+
     }
 
     public void getDish(String dishId) {
